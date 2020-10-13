@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Row({ user }) {
-    console.log(user);
     return (
         <tr>
             <th ><span hidden>{user.id}</span>-</th>
@@ -10,8 +9,7 @@ function Row({ user }) {
             <th>{user.lastName}</th>
             <th>{user.phone}</th>
             <th>{user.email}</th>
-        </tr>
-              
+        </tr>  
     );
 }
 

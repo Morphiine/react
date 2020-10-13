@@ -7,7 +7,8 @@ function Header( { onFetchClick } ) {
             <h1>TD React / Axios</h1>
             <hr/>
             <Button onClick={onFetchClick}></Button>
-            <hr/>        </div>
+            <hr/>
+        </div>
     );
 }
 

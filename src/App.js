@@ -5,9 +5,9 @@ import Axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const fetchUsers = async() => {
+const fetchUsers = async(qty) => {
   try {
-    const { data: {results} } = await Axios.get('https://randomuser.me/api/?results=40'); 
+    const { data: {results} } = await Axios.get('https://randomuser.me/api/?results=' +qty); 
     return results.map(result => (
       {
         id: result.login.uuid,
@@ -22,21 +22,21 @@ const fetchUsers = async() => {
     console.error(e);
     return [];
   } finally {
-
+    // alert('finally');
   }
 }
 
 function App() {
-
   const [users, setUsers] = useState([]);
 
   const handleFetchClick = () => {
-    fetchUsers().then(setUsers);
+    fetchUsers(10).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
   }
 
   useEffect(() => {
-    console.log('ok');
-  });
+    fetchUsers(5).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
+    fetchUsers(5).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
+  },[])
 
   return (
     <div className="container">

@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Button() {
+function Button( { onClick } ) {
     return(
-        <button id="fetch-users" className="btn btn-primary">Fetch users</button>
+        <button onClick={onClick} id="fetch-users" className="btn btn-secondary">Show</button>
     );
 }
 

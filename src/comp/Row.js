@@ -4,10 +4,12 @@ function Row({ user }) {
     console.log(user);
     return (
         <tr>
-            <th>{user.name.last}</th>
-            <th>{user.name.first}</th>
-            <th>{user.email}</th>
+            <th ><span hidden>{user.id}</span>-</th>
+            <th><img src={user.picture} alt={user.firstName}/></th>
+            <th>{user.firstName}</th>
+            <th>{user.lastName}</th>
             <th>{user.phone}</th>
+            <th>{user.email}</th>
         </tr>
               
     );

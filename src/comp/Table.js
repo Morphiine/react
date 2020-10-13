@@ -5,17 +5,19 @@ import Row from './Row';
 function Table( { users }) {
 
     return (
-        <table id="tbl-users" className="table table-hover">
+        <table id="tbl-users" className="table table-striped">
             <thead>
                 <tr>
-                    <th>Nom</th>
+                    <th>Id</th>
+                    <th>Photo</th>
                     <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Téléphone</th>
                     <th>Email</th>
-                    <th>Tel</th>
                 </tr>
             </thead>
             <tbody>
-                { users.map((user) => <Row user={ user } />)}
+                { users.map((user, index) => <Row user={ user }  key={index} />)}
             </tbody>
         </table>
     );

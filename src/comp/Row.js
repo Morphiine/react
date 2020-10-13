@@ -9,7 +9,7 @@ function Row({ user }) {
             <th>{user.lastName}</th>
             <th>{user.phone}</th>
             <th>{user.email}</th>
-        </tr>  
+        </tr>
     );
 }
 

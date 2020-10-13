@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 const fetchUsers = async(qty) => {
   try {
-    const { data: {results} } = await Axios.get('https://randomuser.me/api/?results=' +qty); 
+    const { data: {results} } = await Axios.get('https://randomuser.me/api/?results=' +qty);
     return results.map(result => (
       {
         id: result.login.uuid,

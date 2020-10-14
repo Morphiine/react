@@ -1,10 +1,8 @@
 import React from 'react';
 
 function Button( { onClick } ) {
-    return(
-        <div>
-        <button onClick={onClick} id="fetch-users" className="btn btn-secondary ml-2">Show</button>
-        </div>
+    return (
+        <button onClick={onClick} id="fetch-users" className="btn btn-secondary ml-2">Afficher</button>
     );
 }
 

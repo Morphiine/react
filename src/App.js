@@ -28,19 +28,25 @@ const fetchUsers = async(qty) => {
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState([]);
 
   const handleFetchClick = () => {
-    fetchUsers(10).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
+    fetchUsers(5).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
+  }
+
+  const handleOnChange = (e) => {
+    // const userFilter = users.filter((user) => user.name === e.target.value);
+    // setSearch(userFilter);
+    console.log(e.target.value);
   }
 
   useEffect(() => {
-    fetchUsers(5).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
-    fetchUsers(5).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
+    // fetchUsers(5).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
   },[])
 
   return (
     <div className="container">
-      <Header onFetchClick={handleFetchClick}/>
+      <Header onFetchClick={handleFetchClick} onChange={handleOnChange} search={search} />
       <Table users={users}/>
     </div>
   );

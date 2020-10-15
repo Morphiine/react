@@ -28,16 +28,18 @@ const fetchUsers = async(qty) => {
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState([]);
+  const [search, setSearch] = useState();
 
   const handleFetchClick = () => {
     fetchUsers(5).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
   }
 
   const handleOnChange = (e) => {
-    // const userFilter = users.filter((user) => user.name === e.target.value);
-    // setSearch(userFilter);
-    console.log(e.target.value);
+
+    const wordSearch = e.target.value;
+    const userFilter = users.filter((user) => user.firstName.startsWith(wordSearch) );
+    setUsers(userFilter);
+
   }
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Row from './Row';
 
-function Table( { users }) {
+function Table( { users, usersSearch }) {
     return (
         <table id="tbl-users" className="table table-hover">
             <thead>

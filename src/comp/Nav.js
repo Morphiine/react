@@ -1,16 +1,16 @@
 import React from 'react';
 
-function Nav( { onChange, value } ) {
+function Nav() {
     return (
-        <div class="row">
-            <nav class="navbar navbar-dark bg-dark col-12 mb-4">
-            <div className="container">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Accueil</a>
-                    </li>
-                </ul>
-            </div>
+        <div className="row">
+            <nav className="navbar navbar-dark bg-dark col-12 mb-3">
+                <div className="container">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <a className="nav-link" href="/">Accueil</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </div>
     );

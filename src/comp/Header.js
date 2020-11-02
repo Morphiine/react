@@ -1,16 +1,17 @@
 import React from 'react';
 import Button from './Button';
 import Input from './Input';
+import Select from './Select';
 
-function Header( { onFetchClick, onSearch, search } ) {
+function Header( { onSearch, search, onFetchClick, onChangeSearch } ) {
     return (
         <div>
             <h1>TD React / Axios</h1>
-            <hr/>
-            <Input onChange={onSearch} value={search}></Input>
-            <hr/>
-            <Button onClick={onFetchClick}></Button>
-            <hr/>
+            <div className="row mb-3">
+                <Input onChange={onSearch} value={search}/>
+                <Select onChange={onChangeSearch}/>
+                <Button onClick={onFetchClick}/>
+            </div>
         </div>
     );
 }

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Table from './comp/Table';
 import Header from './comp/Header';
 import Nav from './comp/Nav';
+import Home from './comp/Home';
+import ShowUser from './comp/ShowUser';
 import Axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-const userContext = React.createContext();
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const fetchUsers = async(qty) => {
   try {
@@ -20,10 +18,10 @@ const fetchUsers = async(qty) => {
     return results.map(result => (
       {
         id: result.login.uuid,
-
         firstName: result.name.first, 
         lastName: result.name.last, 
-        picture: result.picture.thumbnail,
+        thumbnail: result.picture.thumbnail,
+        large: result.picture.large,
         phone: result.phone,
         email: result.email 
       }
@@ -38,44 +36,56 @@ const fetchUsers = async(qty) => {
 
 function App() {
 
-  const [search, setSearch] = useState('');
-  const [users, setUsers] = useState([]);
+    const [search, setSearch] = useState('');
+    const [users, setUsers] = useState([]);
 
-  //Show Users click
-  const handleFetchClick = () => {
-    fetchUsers(10).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
-  }
 
-  // Show Users loading page
-  useEffect(() => {
-    fetchUsers(20).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
-  },[])
+    // Show Users click
+    const handleFetchClick = () => {
+        localStorage.removeItem('users');
+        fetchUsers(10).then(newUsers =>{ setUsers( oldUser => [ ...oldUser, ...newUsers]) });
+    }
+    // Filter by
+    const handleChangeSearch = (e) => {
+      console.log(e);
+    }
 
-  // Show users witch filter 
-  const usersFiltered = users.filter((user) => user.lastName.toLowerCase().startsWith(search.toLowerCase()))
+    // Show Users loading page
+    useEffect(() => {
+        const localStorageUsers = window.localStorage.getItem('users');
 
-  return (
-    <Router>
-      <userContext.Provider value={{users, setUsers}}>
-      <div className="container-fluid">
-        <Nav/>
-      </div>
-      <div className="container">
-        <Header onFetchClick={handleFetchClick} onSearch={setSearch} search={search} />
-        <Switch>
-          <Route path="/">
-              <Table users={usersFiltered}/>
-          </Route>
-        </Switch>
-      </div>
-      </userContext.Provider>
-    </Router>
-  );
-}
+        if (localStorageUsers){
+            setUsers(JSON.parse(localStorageUsers));
+        } else {
+            fetchUsers(20).then(newUsers => setUsers( oldUser => [ ...oldUser, ...newUsers]));
+        }
+    }, []);
 
-function Home() {
-  const {users, setUsers} = userContext(userContext);
-  return <h2>Accueil</h2>;
+    useEffect(() => {
+        localStorage.setItem('users', JSON.stringify(users));
+    }, [users]);
+
+    // Show users witch filter 
+    const usersFiltered = users.filter((user) => user.lastName.toLowerCase().startsWith(search.toLowerCase()))
+
+    return (
+        <Router>
+          <div className="container-fluid">
+            <Nav/>
+          </div>
+          <div className="container">
+            <Switch>
+                <Route exact path="/">
+                    <Header onSearch={setSearch} search={search} onFetchClick={ handleFetchClick } onChangeSearch={ handleChangeSearch }/>
+                    <Home users={ usersFiltered }/>
+                </Route>
+                <Route path="/user/:userid">
+                    <ShowUser users={ users }/>
+                </Route>
+            </Switch>
+          </div>
+        </Router>
+    );
 }
 
 export default App;

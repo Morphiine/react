@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 function Row({ user }) {
     return (
         <tr>
-            <th ><span hidden>{user.id}</span>-</th>
-            <th><img src={user.picture} alt={user.firstName}/></th>
+            <th><img className="rounded-circle mx-auto d-block" src={user.thumbnail} alt={user.firstName}/></th>
             <th>{user.lastName}</th>
             <th>{user.firstName}</th>
             <th>{user.phone}</th>
             <th>{user.email}</th>
-            <th>{user.email}</th>
-            <th><Link/></th>
+            <th><Link to={`/user/${user.id}`}><button type="button" className="btn btn-outline-primary">Éditer</button></Link></th>
         </tr>
     );
 }

@@ -7,13 +7,12 @@ function Table( { users, usersSearch }) {
         <table id="tbl-users" className="table table-hover">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Photo</th>
+                    <th></th>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Téléphone</th>
                     <th>Email</th>
-                    <th>Action</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

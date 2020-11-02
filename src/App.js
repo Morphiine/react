@@ -75,13 +75,13 @@ function App() {
           </div>
           <div className="container">
             <Switch>
-                <Route exact path="/">
-                    <Header onSearch={setSearch} search={search} onFetchClick={ handleFetchClick } onChangeSearch={ handleChangeSearch }/>
-                    <Home users={ usersFiltered }/>
-                </Route>
-                <Route path="/user/:userid">
-                    <ShowUser users={ users }/>
-                </Route>
+              <Route exact path="/">
+                <Header onSearch={ setSearch } search={ search } onFetchClick={ handleFetchClick } onChangeSearch={ handleChangeSearch }/>
+                <Home users={ usersFiltered }/>
+              </Route>
+              <Route path="/user/:userid">
+                <ShowUser users={ users }/>
+              </Route>
             </Switch>
           </div>
         </Router>

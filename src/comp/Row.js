@@ -9,7 +9,7 @@ function Row({ user }) {
             <th>{user.firstName}</th>
             <th>{user.phone}</th>
             <th>{user.email}</th>
-            <th><Link to={`/user/${user.id}`}><button type="button" className="btn btn-outline-primary">Éditer</button></Link></th>
+            <th><Link className="btn btn-outline-primary" to={`/user/${user.id}`}>Éditer</Link></th>
         </tr>
     );
 }
